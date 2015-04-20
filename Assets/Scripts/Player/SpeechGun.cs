@@ -19,8 +19,9 @@ public class SpeechGun : MonoBehaviour {
             }
 
             BoxCollider2D coll = text.GetComponent<BoxCollider2D>();
-            Renderer rend = text.GetComponent<Renderer>();
-            coll.size = new Vector2(rend.bounds.size.x * 4f, rend.bounds.size.y) ;//Size the collider on the box
+            MeshRenderer rend = text.GetComponent<MeshRenderer>();
+            coll.size = new Vector2(rend.bounds.size.x / 0.155f, rend.bounds.size.y / 0.155f) ;//Size the collider on the box
+            coll.offset = new Vector2((rend.bounds.size.x / 0.155f )/ 2f, 0);
 
             text.transform.rotation = transform.rotation; //Rotate the text to the players rotation
             text.transform.Rotate(new Vector3(0, 0, 90)); //Add a rotation offset

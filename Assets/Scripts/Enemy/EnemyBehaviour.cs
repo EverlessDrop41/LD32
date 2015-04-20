@@ -44,6 +44,12 @@ public class EnemyBehaviour : MonoBehaviour {
 
     void ReactToPhrase(PhraseActions phraseType)
     {
+        if ((EnemyType == EnemyTypes.Brute && !raging ) || phraseType == PhraseActions.Rage)
+        {
+            raging = true;
+            return;
+        }
+
         if (EnemyType == EnemyTypes.Explosive || phraseType == PhraseActions.Explode)
         {
             Instantiate(Explosion, transform.position, Quaternion.identity);
