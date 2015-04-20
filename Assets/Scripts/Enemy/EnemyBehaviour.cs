@@ -8,6 +8,8 @@ public class EnemyBehaviour : MonoBehaviour {
     public EnemyTypes EnemyType;
     public GameObject Explosion;
 
+	private bool raging;
+	
     private Rigidbody2D RB;
 
     void Start()
@@ -32,6 +34,12 @@ public class EnemyBehaviour : MonoBehaviour {
         float rotZ = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
 
         RB.MoveRotation(-rotZ);
+
+        if (raging)
+        {
+            RB.AddForce(dir * 10);
+        }
+
 	}
 
     void ReactToPhrase(PhraseActions phraseType)
@@ -48,6 +56,13 @@ public class EnemyBehaviour : MonoBehaviour {
             Destroy(this.gameObject);
             return;
         }
+		
+		if (phraseType == PhraseActions.Rage) 
+		{
+			raging = true;
+		}
 
     }
+	
+	public bool isRaging() { return raging; }
 }
